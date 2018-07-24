@@ -325,7 +325,11 @@ ${this.renderTypes()}`
       const inputType = this.renderInputFieldType(
         (type as GraphQLWrappingType).ofType,
       )
-      return `${inputType}[] | ${inputType}`
+      if (isNonNullType(type)) {
+        return `${inputType}[]`
+      } else {
+        return `(${inputType} | undefined)[]`
+      }
     }
     return `${(type as GraphQLNamedType).name}${
       (type as GraphQLNamedType).name === 'ID' ? '_Input' : ''
