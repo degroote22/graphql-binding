@@ -168,7 +168,7 @@ export interface Binding {
 }
 
 export interface BindingConstructor<T> {
-  new(...args): T
+  new(...args: any[]): T
 }
 
 ${this.renderExports()}
